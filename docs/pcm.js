@@ -1,4 +1,4 @@
-﻿var csvFile = "pch_season4_OctCh.csv";
+﻿var csvFile = "docs/pch_season4_OctCh.csv";
 
 function Init(){
 	console.log("Init");
