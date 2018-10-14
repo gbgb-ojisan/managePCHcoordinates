@@ -14,10 +14,10 @@ html = urllib.request.urlopen(url)
 # HTML Parser
 soup = BeautifulSoup(html, 'lxml')
 
-fieldNames = ['pchId', 'groupId', 'name', 'rarity', 'category', 'like', 'imgPath']
+fieldNames = ['pchId', 'groupId', 'name', 'rarity', 'category', 'like', 'imgPath', 'imgUrl']
 # Open a csv file
 # ATTN: SJISのCSVとして書き込まれるので注意（encoding指定が効かない)
-with open('pch_season4_OctCh.csv', 'w') as f:
+with open('pch_season4_OctCh.csv', 'w', encoding='utf-8') as f:
     writer = csv.DictWriter(f, fieldnames=fieldNames)
     writer.writeheader()
     # Get div.coordinate-list
@@ -42,7 +42,8 @@ with open('pch_season4_OctCh.csv', 'w') as f:
                              'rarity': rarity,
                              'like': like,
                              'category': category,
-                             'imgPath': saveName})                         
+                             'imgPath': saveName,
+                             'imgUrl': imgUrl})                         
 
 #        print(imgUrl)
 #        urllib.request.urlretrieve(imgUrl, saveName)

@@ -1,0 +1,45 @@
+body {
+	background-color: #f9f1c0;
+}
+
+input[type=checkbox] {
+	transform: scale(1.5);
+}
+
+div#title {
+	height: 75px;
+	background-color: #f0489c;
+	color: #ffffff;
+}
+
+div#menubar {
+	position: fixed; right:0.67em; top:0.67em;
+	width: 70px;
+	height: 70px;
+	background-color: #c250e5;
+	/*box-align: center;*/
+	text-align: center;
+	color: #ffffff;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+ul#coordinate-list {
+	list-style: none;
+	display: grid;
+	grid-gap: 5px;
+	grid-template-columns: 1fr 1fr;
+}
+
+li {
+	text-align: center;
+}
+
+li > span {
+	font-size: small;
+}
+
+.s-size {
+	font-size: x-small;
+}

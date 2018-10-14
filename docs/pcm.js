@@ -1,4 +1,5 @@
 ﻿var csvFile = "pch_season4_OctCh.csv";
+var Nrow = 2;
 
 function Init(){
 jQuery(function($){
@@ -10,18 +11,10 @@ jQuery(function($){
 	}else{
 		var isExistData = 1;
 	}
-	/* Table */
-	var $table = $('<table>');
-	var $thead = $('<thead>');
-	var $tr = $('<tr>');
-	$tr.append('<td>Check</td>');
-	$tr.append('<td>PCH-ID</td>');
-	$tr.append('<td>コーデグループ</td>');
-	$tr.append('<td>名前</td>');
-	$tr.append('<td>Image</td>');
-	$thead.append($tr);
-	$table.append($thead);
-	var $tbody = $('<tbody>');
+	/* Make a list */
+	var $ul = $('<ul>', {
+		id: 'coordinate-list'
+	});
 
 	Papa.parse(csvFile, {
 		encoding: 'UTF-8',
@@ -31,8 +24,8 @@ jQuery(function($){
 			console.log(results);
 			var data = results['data'];
 			var nogroupIdx = 0;
+			/* Process for each coordinate. */
 			$.each(data, function(idx,val){
-				console.log(idx);
 				/* Set pchId */
 				var pchId = val['pchId'];
 				/* Read local data */
@@ -50,21 +43,36 @@ jQuery(function($){
 					groupId = ""+nogroupIdx;
 					nogroupIdx += 1;
 				}
-				var $trBody = $('<tr>',
+				/* Make a li*/
+				var $li = $('<li>',
 					{id: pchId,
 					 "class": groupId
 					});
-				$trBody.append($('<td>').append('<input'+cbAttr+'></input>'));
-				$trBody.append($('<td>').html(pchId));
-				$trBody.append($('<td>').html(val['groupId']));
-				$trBody.append($('<td>').html(val['name']));
-				$tbody.append($trBody);
+				/* img */
+				var imgUrl = val['imgUrl'];
+				$li.append($('<img>', {
+					src: imgUrl,
+					width: 128,
+					height: 128
+					})
+				);
+				$li.append($('<br>'));
+				$li.append($('<span>').append('<input'+cbAttr+'></input>'));
+				$li.append($('<br>'));
+				$li.append($('<span>',{'class':'s-size'}).html(pchId));
+				$li.append($('<br>'));
+				$li.append($('<span>',{'class':'s-size'}).html(val['groupId']));
+				$li.append($('<br>'));
+				$li.append($('<span>').html(val['name']));
+				/* End of making a li*/
+				$ul.append($li);
 			});
-			$table.append($tbody);
-			$('#main').html($table);
 		}
 	});
+	/* End of PapaParse*/
+	$('#main').append($ul);
 });
+/* End of jQuery.*/
 }
 
 function setLsData(obj){
