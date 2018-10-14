@@ -1,13 +1,17 @@
 body {
+	position: relative;
+	width: 96%;
+	margin: 2%;
 	background-color: #f9f1c0;
 }
 
 input[type=checkbox] {
-	transform: scale(1.5);
+	transform: scale(2);
 }
 
 div#title {
 	height: 75px;
+	width: 100%;
 	background-color: #f0489c;
 	color: #ffffff;
 }
@@ -26,9 +30,10 @@ div#menubar {
 }
 
 ul#coordinate-list {
+	width: 100%;
 	list-style: none;
 	display: grid;
-	grid-gap: 5px;
+	grid-gap: 1em;
 	grid-template-columns: 1fr 1fr;
 }
 
@@ -37,9 +42,9 @@ li {
 }
 
 li > span {
-	font-size: small;
+	font-size: 1em;
 }
 
 .s-size {
-	font-size: x-small;
+	font-size: 0.85em;
 }

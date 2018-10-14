@@ -30,11 +30,13 @@ jQuery(function($){
 				var pchId = val['pchId'];
 				/* Read local data */
 				var cbAttr = ' type="checkbox" onChange="setLsData(this)"';
+				var className = 'yet';
 				if(isExistData === 1){
 					var isChecked = localStorage.getItem(pchId);
 					if(isChecked){
 						/* Checked coordinate*/
 						cbAttr = ' type="checkbox" checked onChange="setLsData(this)"';
+						className = 'already';
 					}
 				}
 				/* Set groupID */
@@ -46,7 +48,8 @@ jQuery(function($){
 				/* Make a li*/
 				var $li = $('<li>',
 					{id: pchId,
-					 "class": groupId
+					"class": className,
+					"data-groupId": groupId
 					});
 				/* img */
 				var imgUrl = val['imgUrl'];
@@ -74,11 +77,34 @@ jQuery(function($){
 });
 /* End of jQuery.*/
 }
+/* End of Init()*/
 
 function setLsData(obj){
 jQuery(function($){
-	var pchId = $(obj).closest('tr').attr('id');
-	localStorage.setItem(pchId, 1);
+	var pchId = $(obj).closest('li').attr('id');
+	if(!localStorage.getItem(pchId)){
+		localStorage.setItem(pchId, 1);
+		$(obj).closest('li').removeClass('yet');
+		$(obj).closest('li').addClass('already');
+	}else{
+		localStorage.removeItem(pchId);
+		$(obj).closest('li').removeClass('already');
+		$(obj).closest('li').addClass('yet');
+	}
 	console.log(pchId);
 });
 }
+
+/* Get the pch coordinate's data.*/
+function getLsData(obj){
+jQuery(function($){
+	var pchId = $(obj).closest('li').attr('id');
+	var isHaving = localStorage.getItem(pchId);
+	if(!isHaving){
+		return isHaving;
+	}else{
+		return 0;
+	}
+});
+}
+
