@@ -55,12 +55,14 @@ jQuery(function($){
 				var imgUrl = val['imgUrl'];
 				$li.append($('<img>', {
 					src: imgUrl,
-					width: 128,
-					height: 128
+					width: 256,
+					height: 256
 					})
 				);
 				$li.append($('<br>'));
 				$li.append($('<span>').append('<input'+cbAttr+'></input>'));
+				$li.append($('<br>'));
+				$li.append($('<span>',{'class':'s-size'}).html(val['rarity']));
 				$li.append($('<br>'));
 				$li.append($('<span>',{'class':'s-size'}).html(pchId));
 				$li.append($('<br>'));
@@ -108,3 +110,26 @@ jQuery(function($){
 });
 }
 
+function changeDispMenu(){
+jQuery(function($){
+	var $menulist = $('#menulist');	
+	/* Show or hide menu*/
+	if($menulist.hasClass('hide')){
+		$menulist.removeClass('hide');
+		$menulist.addClass('show');
+	}else if($menulist.hasClass('show')){
+		$menulist.removeClass('show');
+		$menulist.addClass('hide');
+	}
+});
+}
+
+function changeShowMode(mode){
+jQuery(function($){
+	if(mode === 'hide'){
+		$('.already').css('display', 'none');
+	}else if(mode === 'show'){
+		$('.already').css('display', 'list-item');
+	}
+});
+}

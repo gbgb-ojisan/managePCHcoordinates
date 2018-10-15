@@ -16,8 +16,12 @@
 <div id="title">
 <h1>PCH Coordinates Manager beta</h1>
 </div>
-<div id="menubar">
+<div id="menubar" onclick="changeDispMenu()">
 	Menu
+	<div id="menulist" class="hide">
+		<div onclick="changeShowMode('show')">すべて表示</div>
+		<div onclick="changeShowMode('hide')">所持済みコーデを隠す</div>
+	</div>
 </div>
 <div id="main">
 </div>
