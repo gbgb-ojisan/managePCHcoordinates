@@ -1,9 +1,13 @@
-﻿var csvFile = "pch_season4_OctCh.csv";
+﻿/* Global variations */
+var csvFile = "pch_season4_OctCh.csv";
+var csvFile2 = "pch_season4_NovCh.csv";
 var Nrow = 2;
 
-function Init(){
+function Init(csvFileName){
 jQuery(function($){
-	console.log("Init");
+	if(!csvFileName){
+					csvFileName = csvFile;
+	}
 	/* Check localstorage already exists */
 	if(!localStorage.getItem('existData')){
 		/* First access*/
@@ -131,5 +135,17 @@ jQuery(function($){
 	}else if(mode === 'show'){
 		$('.already').css('display', 'list-item');
 	}
+});
+}
+
+function selectChannel(obj){
+jQuery(function($){
+				var $obj = $(obj);
+				var selectedCsvVal = $obj.children('option:selected').val();
+				if(selectedCsvVal == '4-10'){
+								Init(csvFile);
+				}else if(selectedCsvVal == '4-11'){
+								Init(csvFile2);
+				}
 });
 }

@@ -5,8 +5,10 @@ from bs4 import BeautifulSoup
 import csv
 
 # URL
-# Season 4, October channel
-url = "https://prichan.jp/items/4th_10.html"
+# Season 4, November channel
+url = "https://prichan.jp/items/4th_11.html"
+# CSV filename
+filename = 'pch_season4_NovCh.csv'
 
 # Access to the URL
 html = urllib.request.urlopen(url)
@@ -17,7 +19,7 @@ soup = BeautifulSoup(html, 'lxml')
 fieldNames = ['pchId', 'groupId', 'name', 'rarity', 'category', 'like', 'imgPath', 'imgUrl']
 # Open a csv file
 # ATTN: SJISのCSVとして書き込まれるので注意（encoding指定が効かない)
-with open('pch_season4_OctCh.csv', 'w', encoding='utf-8') as f:
+with open(filename, 'w', encoding='utf-8') as f:
     writer = csv.DictWriter(f, fieldnames=fieldNames)
     writer.writeheader()
     # Get div.coordinate-list
