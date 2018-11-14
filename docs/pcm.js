@@ -20,7 +20,7 @@ jQuery(function($){
 		id: 'coordinate-list'
 	});
 
-	Papa.parse(csvFile, {
+	Papa.parse(csvFileName, {
 		encoding: 'UTF-8',
 		download: true,
 		header: true,
@@ -79,7 +79,7 @@ jQuery(function($){
 		}
 	});
 	/* End of PapaParse*/
-	$('#main').append($ul);
+	$('#main').html($ul);
 });
 /* End of jQuery.*/
 }
@@ -140,11 +140,14 @@ jQuery(function($){
 
 function selectChannel(obj){
 jQuery(function($){
+				console.log(obj);
 				var $obj = $(obj);
 				var selectedCsvVal = $obj.children('option:selected').val();
+				console.log(selectedCsvVal);
 				if(selectedCsvVal == '4-10'){
 								Init(csvFile);
 				}else if(selectedCsvVal == '4-11'){
+								console.log('4-11');
 								Init(csvFile2);
 				}
 });

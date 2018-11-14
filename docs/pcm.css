@@ -75,3 +75,8 @@ li > span {
 #menulist > div {
 	font-size: calc(100% + 3vw);
 }
+
+#channelSelect {
+	font-size: larger;
+	margin: 2vw;
+}
