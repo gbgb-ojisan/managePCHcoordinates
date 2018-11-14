@@ -1,7 +1,8 @@
 ﻿/* Global variations */
 var csvFile = "pch_season4_OctCh.csv";
 var csvFile2 = "pch_season4_NovCh.csv";
-var Nrow = 2;
+var csvFile3 = "pch_season4_Selection.csv";
+var Nrow = 2; /* 列数*/
 
 function Init(csvFileName){
 jQuery(function($){
@@ -144,11 +145,18 @@ jQuery(function($){
 				var $obj = $(obj);
 				var selectedCsvVal = $obj.children('option:selected').val();
 				console.log(selectedCsvVal);
-				if(selectedCsvVal == '4-10'){
-								Init(csvFile);
-				}else if(selectedCsvVal == '4-11'){
-								console.log('4-11');
-								Init(csvFile2);
+				switch (selectedCsvVal){
+					case '4-10':
+						Init(csvFile);
+						break;
+					case '4-11':
+						Init(csvFile2);
+						break;
+					case '4-12':
+						Init(csvFile3);
+						break;
+					default:
+						alert('ERROR');
 				}
 });
 }

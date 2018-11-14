@@ -4,11 +4,12 @@ import urllib
 from bs4 import BeautifulSoup
 import csv
 
+# -----------------------------------------------------
 # URL
-# Season 4, November channel
-url = "https://prichan.jp/items/4th_11.html"
+url = "https://prichan.jp/items/selection.html"
 # CSV filename
-filename = 'pch_season4_NovCh.csv'
+filename = 'pch_season4_Selection.csv'
+# -----------------------------------------------------
 
 # Access to the URL
 html = urllib.request.urlopen(url)
