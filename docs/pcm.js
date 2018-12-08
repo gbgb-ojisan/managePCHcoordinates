@@ -2,12 +2,13 @@
 var csvFile = "pch_season4_OctCh.csv";
 var csvFile2 = "pch_season4_NovCh.csv";
 var csvFile3 = "pch_season4_Selection.csv";
+var csvFile4 = "pch_season5_DecCh.csv";
 var Nrow = 2; /* 列数*/
 
 function Init(csvFileName){
 jQuery(function($){
 	if(!csvFileName){
-					csvFileName = csvFile;
+					csvFileName = csvFile4;
 	}
 	/* Check localstorage already exists */
 	if(!localStorage.getItem('existData')){
@@ -154,6 +155,9 @@ jQuery(function($){
 						break;
 					case '4-12':
 						Init(csvFile3);
+						break;
+					case '5-12':
+						Init(csvFile4);
 						break;
 					default:
 						alert('ERROR');

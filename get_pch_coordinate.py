@@ -6,9 +6,9 @@ import csv
 
 # -----------------------------------------------------
 # URL
-url = "https://prichan.jp/items/selection.html"
+url = "https://prichan.jp/items/5th_12.html"
 # CSV filename
-filename = 'pch_season4_Selection.csv'
+filename = 'pch_season5_DecCh.csv'
 # -----------------------------------------------------
 
 # Access to the URL
