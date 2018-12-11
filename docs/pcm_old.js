@@ -2,37 +2,26 @@
 var csvFile = "pch_season4_OctCh.csv";
 var csvFile2 = "pch_season4_NovCh.csv";
 var csvFile3 = "pch_season4_Selection.csv";
-var csvFile4 = "./csv/pch_season5_DecCh.csv";
-var filelist = "./csv/_csvlist.csv";
+var csvFile4 = "pch_season5_DecCh.csv";
 var Nrow = 2; /* 列数*/
 
-function Init(){
+function Init(csvFileName){
 jQuery(function($){
-	/* CSVリストを取得し，最新弾を表示 */
-	Papa.parse(filelist, {
-		encoding: 'UTF-8',
-		download: true,
-		skipEmptyLines: true,
-		complete: function(results){
-			var csvNames = results.data; /* csvNames is N*3 size array. */
-			makeUlFromCsv(csvNames[csvNames.length-1][0]);
-			makeSeasonSelect(csvNames);
-		}
-	});
-});
-/* End of jQuery.*/
-}
-/* End of Init()*/
-
-function makeUlFromCsv(csvFileName){
-/* CSVを読み込み，リストを作成 */
-jQuery(function($){
+	if(!csvFileName){
+					csvFileName = csvFile4;
+	}
+	/* Check localstorage already exists */
+	if(!localStorage.getItem('existData')){
+		/* First access*/
+		localStorage.setItem('existData', 1);
+	}else{
+		var isExistData = 1;
+	}
 	/* Make a list */
 	var $ul = $('<ul>', {
 		id: 'coordinate-list'
 	});
 
-	/* Read CSV */
 	Papa.parse(csvFileName, {
 		encoding: 'UTF-8',
 		download: true,
@@ -49,11 +38,13 @@ jQuery(function($){
 				/* Read local data */
 				var cbAttr = ' type="checkbox" onChange="setLsData(this)"';
 				var className = 'yet';
-				var isChecked = localStorage.getItem(pchId);
-				if(isChecked){
-					/* Checked coordinate*/
-					cbAttr = ' type="checkbox" checked onChange="setLsData(this)"';
-					className = 'already';
+				if(isExistData === 1){
+					var isChecked = localStorage.getItem(pchId);
+					if(isChecked){
+						/* Checked coordinate*/
+						cbAttr = ' type="checkbox" checked onChange="setLsData(this)"';
+						className = 'already';
+					}
 				}
 				/* Set groupID */
 				var groupId = val['groupId'];
@@ -93,10 +84,11 @@ jQuery(function($){
 	/* End of PapaParse*/
 	$('#main').html($ul);
 });
+/* End of jQuery.*/
 }
+/* End of Init()*/
 
 function setLsData(obj){
-/* Set the belonging status of the item. */
 jQuery(function($){
 	var pchId = $(obj).closest('li').attr('id');
 	if(!localStorage.getItem(pchId)){
@@ -112,8 +104,8 @@ jQuery(function($){
 });
 }
 
-function getLsData(obj){
 /* Get the pch coordinate's data.*/
+function getLsData(obj){
 jQuery(function($){
 	var pchId = $(obj).closest('li').attr('id');
 	var isHaving = localStorage.getItem(pchId);
@@ -126,7 +118,6 @@ jQuery(function($){
 }
 
 function changeDispMenu(){
-/* Show the menu. */
 jQuery(function($){
 	var $menulist = $('#menulist');	
 	/* Show or hide menu*/
@@ -172,35 +163,5 @@ jQuery(function($){
 					default:
 						alert('ERROR');
 				}
-});
-}
-
-function makeSeasonSelect(csvArray){
-jQuery(function($){
-	var L = csvArray.length;
-	console.log(L);
-	var $select = $('<select>', {
-		id: 'channelSelect',
-		onChange: 'selectChannel(this)'
-	});
-
-	var $options = $.map(csvArray, function(elm, idx){
-		var isSelected = (idx === L-1);
-		if(elm[2] === 'finished'){
-			var prefix = '（終了）';
-		}else{
-			var prefix = '';
-		}
-		$option = $('<option>', {
-			value: elm[0],
-			text: prefix + elm[1],
-			selected: isSelected
-		});
-		return $option;
-	});
-	$select.append($options);
-
-
-	$('#channelSelect-outer').append($select);
 });
 }
