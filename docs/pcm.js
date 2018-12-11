@@ -1,9 +1,5 @@
 ﻿/* Global variations */
-var csvFile = "pch_season4_OctCh.csv";
-var csvFile2 = "pch_season4_NovCh.csv";
-var csvFile3 = "pch_season4_Selection.csv";
-var csvFile4 = "./csv/pch_season5_DecCh.csv";
-var filelist = "./csv/_csvlist.csv";
+var filelist = "./docs/csv/_csvlist.csv";
 var Nrow = 2; /* 列数*/
 
 function Init(){
@@ -152,26 +148,11 @@ jQuery(function($){
 
 function selectChannel(obj){
 jQuery(function($){
-				console.log(obj);
-				var $obj = $(obj);
-				var selectedCsvVal = $obj.children('option:selected').val();
-				console.log(selectedCsvVal);
-				switch (selectedCsvVal){
-					case '4-10':
-						Init(csvFile);
-						break;
-					case '4-11':
-						Init(csvFile2);
-						break;
-					case '4-12':
-						Init(csvFile3);
-						break;
-					case '5-12':
-						Init(csvFile4);
-						break;
-					default:
-						alert('ERROR');
-				}
+	console.log(obj);
+	var $obj = $(obj);
+	var selectedCsvVal = $obj.children('option:selected').val();
+	console.log(selectedCsvVal);
+	makeUlFromCsv(selectedCsvVal);
 });
 }
 
