@@ -1,5 +1,5 @@
 ﻿/* Global variations */
-var filelist = "_csvlist.csv";
+var filelist = "./csv/csvlist.csv";
 var Nrow = 2; /* 列数*/
 
 function Init(){
