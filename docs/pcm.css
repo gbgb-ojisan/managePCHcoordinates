@@ -83,3 +83,35 @@ li > span {
 	height: 8vh;
 }
 
+.back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    display: none;
+}
+.back-to-top:before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000000;
+}
+.back-to-top:after {
+    content: "↑";
+    display: block;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
