@@ -6,9 +6,9 @@ import csv
 
 # -----------------------------------------------------
 # URL
-url = "https://prichan.jp/items/selection.html"
+url = "https://prichan.jp/items/5th_1.html"
 # CSV filename
-filename = 'pch_season5_Selection.csv'
+filename = 'pch_season5_JanCh.csv'
 # -----------------------------------------------------
 
 # Access to the URL
@@ -19,7 +19,7 @@ soup = BeautifulSoup(html, 'lxml')
 
 fieldNames = ['pchId', 'groupId', 'name', 'rarity', 'category', 'like', 'imgPath', 'imgUrl']
 # Open a csv file
-# ATTN: SJISのCSVとして書き込まれるので注意（encoding指定が効かない)
+# ATTN: Wondowsで実行するとSJISのCSVとして書き込まれるので注意（encoding指定が効かない)
 with open(filename, 'w', encoding='utf-8') as f:
     writer = csv.DictWriter(f, fieldnames=fieldNames)
     writer.writeheader()
