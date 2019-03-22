@@ -7,16 +7,17 @@ import re
 
 # -----------------------------------------------------
 # URL
-url = "https://prichan.jp/items/selection.html#6-P1"
+url = "https://prichan.jp/items/6th_3.html"
 # CSV filename
-filename = 'pch_selection_airanju.csv'
+filename = 'pch_6th_Mar.csv'
 # セレクションの場合，過去のコーデと同一のページに追記されるため，
-# divのidで絞り込む必要がある
-isSelection = 1
-if isSelection:
-    interestId = '6-P'
+# セレクションチャンネルの場合，1を指定
+isSelection = 0
 
 # -----------------------------------------------------
+
+if isSelection:
+    interestId = '6-P'
 
 # Access to the URL
 html = urllib.request.urlopen(url)
